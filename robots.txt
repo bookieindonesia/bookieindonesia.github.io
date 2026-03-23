@@ -1,0 +1,21 @@
+User-agent: *
+Allow: /
+
+# Jangan blokir apapun
+
+Disallow:
+
+# Prioritaskan Googlebot
+
+User-agent: Googlebot
+Allow: /
+
+User-agent: Googlebot-Image
+Allow: /
+
+User-agent: Googlebot-News
+Allow: /
+
+# Sitemap wajib
+
+Sitemap: https://bookieindonesia.github.io/sitemap.xml
