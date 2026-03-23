@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+
+<link rel="canonical" href="https://bookieindonesia.github.io/">
+
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-B2L9B6BEY5"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-B2L9B6BEY5');
+</script>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="dns-prefetch" href="//fonts.googleapis.com">
+
+<link rel="manifest" href="manifest.json">
+<meta name="theme-color" content="#ff6600">
+
+<title>Typing Race Clone - Bookie Indonesia</title>
+<!-- SEO BASIC -->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Game Typing Race Clone dari Bookie Indonesia hadir untuk melatih kecepatan mengetik secara seru dan kompetitif. Tantang pemain lain, tingkatkan skill typing, dan raih skor tertinggi sekarang!">
+<meta name="keywords" content="typing race, game mengetik, lomba typing online, latihan mengetik cepat">
+<meta name="author" content="Typing Race Indonesia">
+
+<!-- GOOGLE SEO 2026 -->
+<meta name="robots" content="index, follow, max-image-preview:large">
+
+<!-- OPEN GRAPH (WAJIB BIAR BAGUS DI SHARE & DISCOVER) -->
+<meta property="og:title" content="Typing Race Clone - Bookie Indonesia">
+<meta property="og:description" content="Game Typing Race Clone dari Bookie Indonesia hadir untuk melatih kecepatan mengetik secara seru dan kompetitif. Tantang pemain lain, tingkatkan skill typing, dan raih skor tertinggi sekarang!">
+<meta property="og:type" content="website">
+<meta property="og:image" content="https://bookieindonesia.github.io/img/cover.jpg">
+<meta property="og:url" content="https://bookieindonesia.github.io/">
+
+<!-- TWITTER CARD -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Typing Race Clone - Bookie Indonesia">
+<meta name="twitter:description" content="Game Typing Race Clone dari Bookie Indonesia hadir untuk melatih kecepatan mengetik secara seru dan kompetitif. Tantang pemain lain, tingkatkan skill typing, dan raih skor tertinggi sekarang!">
+<meta name="twitter:image" content="https://bookieindonesia.github.io/img/cover.jpg">
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Game",
+  "name": "Typing Race Clone - Bookie Indonesia",
+  "description": "Game Typing Race Clone dari Bookie Indonesia hadir untuk melatih kecepatan mengetik secara seru dan kompetitif. Tantang pemain lain, tingkatkan skill typing, dan raih skor tertinggi sekarang!",
+  "url": "https://bookieindonesia.github.io/",
+  "genre": "Typing Game",
+  "applicationCategory": "Game",
+  "operatingSystem": "All"
+}
+</script>
+
+<style>
+body {
+  font-family: Arial, sans-serif;
+  background: #e9eef3;
+}
+
+.container {
+  width: 900px;
+  margin: 30px auto;
+  background: #fff;
+  padding: 20px;
+  border-radius: 10px;
+}
+
+/* HEADER */
+.top {
+  display: flex;
+  justify-content: space-between;
+}
+
+.time {
+  font-weight: bold;
+}
+
+/* TRACK */
+.row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 10px 0;
+}
+
+.track {
+  width: 75%;
+  height: 30px;
+  background: #f3f3f3;
+  border-radius: 20px;
+  position: relative;
+}
+
+.car {
+  position: absolute;
+  left: 0;
+  top: 2px;
+  transition: 0.2s;
+}
+
+.info {
+  width: 20%;
+  text-align: right;
+}
+
+/* TEXT AREA */
+.text-box {
+  background: #eef2f5;
+  padding: 15px;
+  margin-top: 20px;
+  border-radius: 10px;
+  font-family: monospace;
+  font-size: 18px;
+}
+
+.correct { color: green; }
+.wrong { color: red; }
+
+/* INPUT */
+input {
+  width: 100%;
+  padding: 10px;
+  margin-top: 10px;
+}
+
+/* BUTTON */
+.btn {
+  margin-top: 15px;
+  background: orange;
+  padding: 10px 20px;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+}
+</style>
+
+</head>
+<body>
+
+<div class="container">
+    <h1>Game Typing Race Online Gratis</h1>
+<h2>Latih Kecepatan Mengetik Kamu Sekarang</h2>
+
+  <div class="top">
+    <div>Go!</div>
+    <div class="time" id="time">60</div>
+  </div>
+
+  <!-- PLAYER -->
+  <div class="row">
+    <div class="track">
+      <div class="car" id="player">
+        <img src="https://bookieindonesia.github.io/img/mobil-1.png" loading="lazy" width="40">
+      </div>
+    </div>
+    <div class="info"><span id="cpm">0</span> cpm</div>
+  </div>
+
+  <!-- BOT -->
+  <div class="row">
+    <div class="track">
+      <div class="car" id="bot1">
+        <img src="https://bookieindonesia.github.io/img/mobil-2.png" loading="lazy" width="40">
+      </div>
+    </div>
+    <div class="info">120 cpm</div>
+  </div>
+
+  <div class="row">
+    <div class="track">
+      <div class="car" id="bot2">
+        <img src="https://bookieindonesia.github.io/img/mobil-3.png" loading="lazy" width="40">
+      </div>
+    </div>
+    <div class="info">100 cpm</div>
+  </div>
+
+  <!-- TEXT -->
+  <div class="text-box" id="text"></div>
+
+  <input type="text" id="input" placeholder="Ketik di sini..." disabled>
+
+  <button class="btn" onclick="startGame()">Start</button>
+
+</div>
+
+<div style="margin-top:30px;">
+<h2>Cara Meningkatkan Kecepatan Mengetik</h2>
+<p>
+Typing race adalah salah satu cara terbaik untuk meningkatkan skill mengetik...
+</p>
+</div>
+
+<script>
+const texts = [
+  "Denganmu ku mengerti arti cinta yang sesungguhnya. Cinta yang tumbuh tanpa syarat, tanpa batas, dan tanpa keraguan. Setiap detik bersamamu adalah pelajaran tentang kesabaran, keikhlasan, dan kebahagiaan yang sederhana namun bermakna. Aku belajar bahwa cinta bukan hanya tentang memiliki, tetapi juga tentang menjaga dan menghargai satu sama lain dalam setiap keadaan.",
+
+  "Hidup adalah perjalanan panjang yang penuh dengan lika-liku dan tantangan yang tidak selalu mudah untuk dilalui. Namun dari setiap kegagalan, kita belajar menjadi lebih kuat dan bijaksana. Tidak ada usaha yang sia-sia selama kita terus melangkah dan tidak menyerah. Kesuksesan bukan tentang seberapa cepat kita sampai, tetapi seberapa konsisten kita berjalan menuju tujuan.",
+
+  "Di dunia yang serba cepat ini, banyak orang lupa untuk berhenti sejenak dan menghargai apa yang sudah dimiliki. Padahal kebahagiaan sejati sering kali datang dari hal-hal kecil yang sederhana. Senyuman, waktu bersama keluarga, dan rasa syukur adalah kunci untuk menjalani hidup dengan lebih tenang dan bermakna.",
+
+  "Kesuksesan bukanlah hasil dari keberuntungan semata, melainkan kombinasi antara kerja keras, disiplin, dan keberanian untuk mencoba hal baru. Banyak orang gagal bukan karena tidak mampu, tetapi karena terlalu cepat menyerah sebelum mencapai titik keberhasilan yang sebenarnya sudah sangat dekat.",
+
+  "Waktu adalah sumber daya yang paling berharga dalam hidup ini karena tidak bisa diulang atau dibeli kembali. Setiap detik yang berlalu adalah kesempatan yang tidak akan pernah kembali. Oleh karena itu, gunakan waktumu dengan bijak untuk hal-hal yang benar-benar penting dan memberikan dampak positif.",
+
+  "Dalam perjalanan hidup, kita akan bertemu dengan banyak orang yang datang dan pergi. Ada yang membawa kebahagiaan, ada pula yang meninggalkan pelajaran berharga. Semua itu adalah bagian dari proses yang membentuk kita menjadi pribadi yang lebih dewasa dan kuat.",
+
+  "Jangan pernah takut untuk bermimpi besar, karena semua hal hebat di dunia ini berawal dari mimpi yang sederhana. Yang membedakan hanyalah keberanian untuk mengambil langkah pertama dan konsistensi untuk terus melangkah meskipun menghadapi berbagai rintangan.",
+
+  "Fokus adalah kunci utama untuk mencapai tujuan. Ketika kita terlalu banyak terganggu oleh hal-hal yang tidak penting, maka kita akan kehilangan arah. Belajarlah untuk memprioritaskan apa yang benar-benar penting dan berani mengatakan tidak pada hal yang tidak mendukung tujuanmu.",
+
+  "Perubahan adalah bagian yang tidak terpisahkan dari kehidupan. Tidak semua perubahan terasa nyaman, namun sering kali perubahan membawa kita ke arah yang lebih baik. Yang terpenting adalah bagaimana kita mampu beradaptasi dan tetap berpikir positif dalam setiap situasi.",
+
+  "Keberhasilan sejati bukan hanya tentang pencapaian materi, tetapi juga tentang bagaimana kita bisa memberikan manfaat bagi orang lain. Ketika kita mampu membantu dan memberikan dampak positif, di situlah letak kebahagiaan yang sebenarnya."
+];
+
+let text = "";
+
+let startTime, timer;
+
+function renderText(input="") {
+  let html = "";
+  for (let i=0;i<text.length;i++) {
+    if (i < input.length) {
+      html += text[i] === input[i]
+        ? `<span class="correct">${text[i]}</span>`
+        : `<span class="wrong">${text[i]}</span>`;
+    } else {
+      html += text[i];
+    }
+  }
+  document.getElementById("text").innerHTML = html;
+}
+
+function startGame() {
+  document.getElementById("input").disabled = false;
+  document.getElementById("input").value = "";
+  document.getElementById("input").focus();
+  renderText();
+
+  startTime = new Date();
+
+  let timeLeft = 60;
+  timer = setInterval(()=>{
+    timeLeft--;
+    document.getElementById("time").innerText = timeLeft;
+
+    moveBot("bot1", 0.6);
+    moveBot("bot2", 0.5);
+
+    if (timeLeft <= 0) {
+      clearInterval(timer);
+      alert("Waktu habis!");
+    }
+  },1000);
+}
+
+document.getElementById("input").addEventListener("input", function() {
+  const val = this.value;
+
+  renderText(val);
+
+  let progress = val.length / text.length;
+  document.getElementById("player").style.left = (progress * 90) + "%";
+
+  let time = (new Date() - startTime)/60000;
+  let cpm = Math.round(val.length / time);
+  document.getElementById("cpm").innerText = cpm;
+
+  if (val === text) {
+    clearInterval(timer);
+    alert("🏆 Kamu menang!");
+  }
+});
+
+function moveBot(id, speed) {
+  let el = document.getElementById(id);
+  let current = parseFloat(el.style.left) || 0;
+  current += Math.random() * speed * 10;
+
+  if (current > 90) current = 90;
+
+  el.style.left = current + "%";
+}
+
+function getRandomText() {
+  return texts[Math.floor(Math.random() * texts.length)];
+}
+
+function startGame() {
+  text = getRandomText(); // 🔥 ambil text random
+
+  document.getElementById("input").disabled = false;
+  document.getElementById("input").value = "";
+  document.getElementById("input").focus();
+
+  renderText();
+
+  startTime = new Date();
+
+  let timeLeft = 60;
+  clearInterval(timer); // reset timer lama
+
+  timer = setInterval(()=>{
+    timeLeft--;
+    document.getElementById("time").innerText = timeLeft;
+
+    moveBot("bot1", 0.6);
+    moveBot("bot2", 0.5);
+
+    if (timeLeft <= 0) {
+      clearInterval(timer);
+      alert("Waktu habis!");
+    }
+  },1000);
+}
+
+function renderText(input="") {
+  let html = "";
+  for (let i=0;i<text.length;i++) {
+    if (i < input.length) {
+      html += text[i] === input[i]
+        ? `<span class="correct">${text[i]}</span>`
+        : `<span class="wrong">${text[i]}</span>`;
+    } else {
+      html += text[i];
+    }
+  }
+  document.getElementById("text").innerHTML = html;
+}
+
+window.onbeforeunload = function () {
+  return "Yakin mau keluar?";
+};
+</script>
+
+</body>
+</html>
