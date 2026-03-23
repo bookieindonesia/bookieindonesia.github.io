@@ -297,6 +297,24 @@ input {
 .car {
   box-shadow: 0 0 10px rgba(0,255,200,0.5);
 }
+
+.countdown {
+  text-align: center;
+  font-size: 50px;
+  font-weight: bold;
+  margin: 20px 0;
+  color: #00ffcc;
+  letter-spacing: 3px;
+}
+
+.countdown {
+  animation: pop 0.5s ease;
+}
+
+@keyframes pop {
+  0% { transform: scale(0.5); opacity: 0; }
+  100% { transform: scale(1); opacity: 1; }
+}
 </style>
 
 </head>
@@ -310,6 +328,8 @@ input {
     <div>Go!</div>
     <div class="time" id="time">60</div>
   </div>
+
+  <div id="countdown" class="countdown"></div>
 
   <!-- PLAYER -->
   <div class="row">
@@ -397,26 +417,54 @@ function renderText(input="") {
 }
 
 function startGame() {
-  document.getElementById("input").disabled = false;
-  document.getElementById("input").value = "";
-  document.getElementById("input").focus();
-  renderText();
+  text = getRandomText();
 
-  startTime = new Date();
+  const input = document.getElementById("input");
+  const countdownEl = document.getElementById("countdown");
 
-  let timeLeft = 60;
-  timer = setInterval(()=>{
-    timeLeft--;
-    document.getElementById("time").innerText = timeLeft;
+  input.disabled = true;
+  input.value = "";
 
-    moveBot("bot1", 0.6);
-    moveBot("bot2", 0.5);
+  let count = 5;
 
-    if (timeLeft <= 0) {
+  countdownEl.innerText = count;
+
+  const countdownTimer = setInterval(() => {
+    count--;
+
+    if (count > 0) {
+      countdownEl.innerText = count;
+    } else if (count === 0) {
+      countdownEl.innerText = "GO!";
+    } else {
+      clearInterval(countdownTimer);
+      countdownEl.innerText = "";
+
+      // 🔥 GAME MULAI DI SINI
+      input.disabled = false;
+      input.focus();
+
+      renderText();
+
+      startTime = new Date();
+
+      let timeLeft = 60;
       clearInterval(timer);
-      alert("Waktu habis!");
+
+      timer = setInterval(() => {
+        timeLeft--;
+        document.getElementById("time").innerText = timeLeft;
+
+        moveBot("bot1", 0.6);
+        moveBot("bot2", 0.5);
+
+        if (timeLeft <= 0) {
+          clearInterval(timer);
+          alert("Waktu habis!");
+        }
+      }, 1000);
     }
-  },1000);
+  }, 1000);
 }
 
 document.getElementById("input").addEventListener("input", function() {
@@ -452,33 +500,6 @@ function getRandomText() {
   return texts[Math.floor(Math.random() * texts.length)];
 }
 
-function startGame() {
-  text = getRandomText(); // 🔥 ambil text random
-
-  document.getElementById("input").disabled = false;
-  document.getElementById("input").value = "";
-  document.getElementById("input").focus();
-
-  renderText();
-
-  startTime = new Date();
-
-  let timeLeft = 60;
-  clearInterval(timer); // reset timer lama
-
-  timer = setInterval(()=>{
-    timeLeft--;
-    document.getElementById("time").innerText = timeLeft;
-
-    moveBot("bot1", 0.6);
-    moveBot("bot2", 0.5);
-
-    if (timeLeft <= 0) {
-      clearInterval(timer);
-      alert("Waktu habis!");
-    }
-  },1000);
-}
 
 function renderText(input="") {
   let html = "";
